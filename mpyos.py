@@ -25,7 +25,7 @@ def bootscreen():
                                                                  |  \__| $$                    
                                                                   \$$    $$                    
                                                                    \$$$$$$
-                                        -___                     
+                                        #___                     
         """
     )
     utime.sleep(1)
@@ -44,7 +44,7 @@ def bootscreen():
                                                                  |  \__| $$                    
                                                                   \$$    $$                    
                                                                    \$$$$$$
-                                        _-__                     
+                                        ##__                     
         """
     )
     utime.sleep(1)
@@ -63,7 +63,7 @@ def bootscreen():
                                                                  |  \__| $$                    
                                                                   \$$    $$                    
                                                                    \$$$$$$
-                                        __-_                     
+                                        ###_                    
         """
     )
     utime.sleep(1)
@@ -82,7 +82,7 @@ def bootscreen():
                                                                  |  \__| $$                    
                                                                   \$$    $$                    
                                                                    \$$$$$$
-                                        ___-                     
+                                        ####                     
         """
     )
     utime.sleep(1)
@@ -114,18 +114,17 @@ def osloop():
         apps = pickle.load(f)
         for app, i in zip(apps, range(len(apps))):
             print(str(i) +") " + app)
-        runapp = input("\nType The App name below\n>")
+        runapp = input("\nType The Number corresponding to the App To Launch\n>")
     if runapp:
-        if not runapp in apps:
+        if runapp not in range(len(apps)):
             print("Invalid Option...")
             utime.sleep(1)
             clear()
             osloop()
         clear()  # Clear Screen
-        runapp = apps[runapp]
-        exec("appio." + runapp + '({"NOTIMP":"NOTIMP"})')
+        runapp = apps.values()[int(runapp)] # Get App Name
+        exec("appio." + runapp + '({"NOTIMP":"NOTIMP"})') # Run App
     clear()
-    osloop()
 
 def mpyos():
     bootscreen()
