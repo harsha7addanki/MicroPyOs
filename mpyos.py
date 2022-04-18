@@ -108,23 +108,25 @@ def bootscreen():
     clear()
 
 
-def mpyos(booscreen=True):
-    if booscreen:
-        bootscreen()
+def osloop():
     print("Here Is An App List From MICRO Py OS:\n")
     with open("apps.pk") as f:
         apps = pickle.load(f)
-        for app in apps:
-            print("* " + app)
+        for app, i in zip(apps, range(len(apps))):
+            print(str(i) +") " + app)
         runapp = input("\nType The App name below\n>")
     if runapp:
         if not runapp in apps:
-            print("Invalid Option Restarting...")
+            print("Invalid Option...")
             utime.sleep(1)
             clear()
-            mpyos(booscreen=False)
+            osloop()
         clear()  # Clear Screen
         runapp = apps[runapp]
         exec("appio." + runapp + '({"NOTIMP":"NOTIMP"})')
     clear()
-    mpyos(booscreen=False)
+    osloop()
+
+def mpyos():
+    bootscreen()
+    osloop()
